@@ -7,7 +7,8 @@
 using std::string;
 using std::unordered_map;
 
-namespace base {
+namespace lang {
+namespace design {
 
 template<typename T>
 class ClassRegister {
@@ -56,9 +57,10 @@ class ClassRegister {
 
 };
 
-#define CREATE_BASEINSTANCE(base, derived) inline base *Create##derived() { return new derived(); }
-#define REGISTER_BASECLASS(base) template<> ClassRegister<base>& ClassRegister<base>::GetInstance() { static ClassRegister<base> instance; return instance; }
+#define CREATE_BASEINSTANCE(base, derived) namespace lang { namespace design { inline base *Create##derived() { return new derived(); } } }
+#define REGISTER_BASECLASS(base) namespace lang { namespace design { template<> ClassRegister<base>& ClassRegister<base>::GetInstance() { static ClassRegister<base> instance; return instance; } } }
 
+}
 }
 
 #endif // _CLASSREGISTER_HPP_

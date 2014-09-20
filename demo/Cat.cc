@@ -1,5 +1,5 @@
 #include "Cat.h"
-#include "Animal.h"
+#include "ClassRegister.h"
 
 using namespace demo;
 

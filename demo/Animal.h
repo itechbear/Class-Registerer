@@ -3,7 +3,7 @@
 
 #include "ClassRegister.h"
 
-using namespace base;
+using namespace lang::design;
 
 namespace demo {
 
@@ -21,7 +21,7 @@ class Animal {
 };
 
 #define CREATE_ANIMAL_INSTANCE(name) CREATE_BASEINSTANCE(Animal, name)
-#define REGISTER_ANIMAL_SUBCLASS(name) namespace base { void Register##name() { ClassRegister<Animal>::GetInstance().Register(#name, &Create##name); } __attribute__((constructor)) void Register##name(); }
+#define REGISTER_ANIMAL_SUBCLASS(name) namespace lang { namespace design { void Register##name() { ClassRegister<Animal>::GetInstance().Register(#name, &Create##name); } __attribute__((constructor)) void Register##name(); } }
 }
 
 #endif // _ANIMAL_HPP_

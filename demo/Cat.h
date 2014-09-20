@@ -3,6 +3,8 @@
 
 #include "Animal.h"
 
+using namespace demo;
+
 namespace demo {
 class Cat : public Animal {
  private:
@@ -15,8 +17,8 @@ class Cat : public Animal {
     Meow();
   };
 };
+}
 
 CREATE_ANIMAL_INSTANCE(Cat)
-}
 
 #endif // _CAT_H_

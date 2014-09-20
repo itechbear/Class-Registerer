@@ -6,7 +6,7 @@
 #include "Cat.h"
 
 using namespace std;
-using namespace base;
+using namespace lang::design;
 using namespace demo;
 
 int main() {
