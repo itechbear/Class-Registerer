@@ -18,10 +18,16 @@ class ClassRegister {
   typedef unordered_map<string, CreateCallback> CallbackMap;
   CallbackMap map_;
 
+  ClassRegister(const ClassRegister<T> &other);
+  void operator=(const ClassRegister<T> &other);
+
+  ClassRegister() {
+  }
+
  public:
   static ClassRegister<T> &GetInstance();
 
-  bool Register(string name, CreateCallback callback) {
+  bool Register(const string &name, const CreateCallback callback) {
     auto it = map_.find(name);
 
     if (it != map_.end()) {
@@ -33,7 +39,7 @@ class ClassRegister {
     return true;
   }
 
-  bool Unregister(string name) {
+  bool Unregister(const string &name) {
     auto it = map_.find(name);
 
     if (it == map_.end()) {
@@ -45,7 +51,7 @@ class ClassRegister {
     return true;
   }
 
-  T *Get(string name) {
+  T *Get(const string &name) {
     auto it = map_.find(name);
 
     if (it == map_.end()) {
@@ -57,10 +63,10 @@ class ClassRegister {
 
 };
 
+}
+}
+
 #define CREATE_BASEINSTANCE(base, derived) namespace lang { namespace design { inline base *Create##derived() { return new derived(); } } }
 #define REGISTER_BASECLASS(base) namespace lang { namespace design { template<> ClassRegister<base>& ClassRegister<base>::GetInstance() { static ClassRegister<base> instance; return instance; } } }
-
-}
-}
 
 #endif // _CLASSREGISTER_HPP_
